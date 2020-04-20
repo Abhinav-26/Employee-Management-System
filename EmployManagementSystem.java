@@ -3,6 +3,62 @@
 import java.util.*;
 import java.io.*;
 
+
+/*************************** MENU OF EMS ****************************/
+
+class MainMenu
+{
+  public void menu()
+  {
+    System.out.println("*******************************************");
+    System.out.println("\t  EMPLOYEE MANAGEMENT SYSTEM");
+    System.out.println("*******************************************");
+    System.out.println("\t\t\t--------------------");
+    System.out.println("\t\t\t ~$ Abhinav Dubey");
+    System.out.println("\t\t\t--------------------");
+    System.out.println("\n\nPress 1 : To Add an Employee Details");
+    System.out.println("Press 2 : To See an Employee Details ");
+    System.out.println("Press 3 : To Remove an Employee");
+    System.out.println("Press 4 : To Update Employee Details");
+    System.out.println("Press 5 : To Exit the EMS Portal");
+
+  }
+}
+
+/************************ To add details of Employee *********************/
+
+class Employee_Add
+{
+    public void createFile()
+    {
+        Scanner sc=new Scanner(System.in);
+
+        EmployDetail emp=new EmployDetail();
+        emp.getInfo();
+        try{
+            File f1=new File("file"+emp.employ_id+".txt");
+            if(f1.createNewFile()){
+                FileWriter myWriter = new FileWriter("file"+emp.employ_id+".txt");
+                myWriter.write("Employee ID:"+emp.employ_id+"\n"+"Employee Name     :"+emp.name+"\n"+
+                "Father's Name     :"+emp.father_name+"\n"+"Employee Contact  :"+emp.employ_contact+"\n"+
+                "Email Information :"+emp.email+"\n"+"Employee position :"+emp.position+"\n"+
+                "Employee Salary   :"+emp.employ_salary);
+                myWriter.close();
+                System.out.println("\nEmployee has been Added :)\n");
+
+                System.out.print("\nPress Enter to Continue...");
+                sc.nextLine();
+            }
+            else {
+                System.out.println("\nEmployee already exists :(");
+                System.out.print("\nPress Enter to Continue...");
+                sc.nextLine();
+            }
+        }
+        catch(Exception e){System.out.println(e);}
+    }
+}
+
 /************************* Taking Employee Details ************************/
 
 class EmployDetail
@@ -34,31 +90,20 @@ class EmployDetail
     }
 }
 
-/************************ To add details of Employee *********************/
+/************************ To Show details of Employee *********************/
 
-class Employee_Add
+class Employee_Show
 {
-    public void createFile()
-    {
-        EmployDetail emp=new EmployDetail();
-        emp.getInfo();
-        try{
-            File f1=new File("file"+emp.employ_id+".txt");
-            if(f1.createNewFile()){
-                FileWriter myWriter = new FileWriter("file"+emp.employ_id+".txt");
-                myWriter.write("Employee ID:"+emp.employ_id+"\n"+"Employee Name     :"+emp.name+"\n"+
-                "Father's Name     :"+emp.father_name+"\n"+"Employee Contact  :"+emp.employ_contact+"\n"+
-                "Email Information :"+emp.email+"\n"+"Employee position :"+emp.position+"\n"+
-                "Employee Salary   :"+emp.employ_salary);
-                myWriter.close();
-                System.out.println("\nEmployee has been Added :)\n");
-            }
-            else {
-                System.out.println("\nEmployee already exists :(");
-            }
-        }
-        catch(Exception e){System.out.println(e);}
-    }
+  public void viewFile(String s) throws Exception
+  {
+    File file = new File("file"+s+".txt");
+    Scanner sc = new Scanner(file);
+
+    while (sc.hasNextLine())
+     {
+       System.out.println(sc.nextLine());
+     }
+   }
 }
 
 /***************************** To Remove Employee *************************/
@@ -104,21 +149,6 @@ class Employee_Update
   }
 }
 
-/************************ To Show details of Employee *********************/
-
-class Employee_Show
-{
-  public void viewFile(String s) throws Exception
-  {
-    File file = new File("file"+s+".txt");
-    Scanner sc = new Scanner(file);
-
-    while (sc.hasNextLine())
-     {
-       System.out.println(sc.nextLine());
-     }
-   }
-}
 
 /************************ To Exit from the EMS Portal *********************/
 
@@ -128,11 +158,12 @@ class CodeExit
   {
     System.out.println("\n*****************************************");
     System.out.println("$ cat Thank You For Using my Software :) ");
-    System.out.println("******************************************");
+    System.out.println("*****************************************");
     System.out.println("\t\t/~ <0d3d by Abhinav Dubey\n");
     System.exit(0);
   }
 }
+
 
 /***************************** Main Class *******************************/
 class EmployManagementSystem
@@ -147,18 +178,9 @@ class EmployManagementSystem
 
     int i=0;
 
-    /*************************** MENU OF EMS ****************************/
-    System.out.println("*******************************************");
-    System.out.println("\t  EMPLOYEE MANAGEMENT SYSTEM");
-    System.out.println("*******************************************");
-    System.out.println("\t\t\t--------------------");
-    System.out.println("\t\t\t ~$ Abhinav Dubey");
-    System.out.println("\t\t\t--------------------");
-    System.out.println("\n\nPress 1 : To Add an Employee Details");
-    System.out.println("Press 2 : To See an Employee Details ");
-    System.out.println("Press 3 : To Remove an Employee");
-    System.out.println("Press 4 : To Update Employee Details");
-    System.out.println("Press 5 : To Exit the EMS Portal");
+    /*** Callining Mainmenu Class function ****/
+    MainMenu obj1 = new MainMenu();
+    obj1.menu();
 
     /*** Initialising loop for Menu Choices ***/
     while(i<6)
@@ -175,6 +197,9 @@ class EmployManagementSystem
         /** Creating class's object and calling Function using that object **/
         Employee_Add ep =new Employee_Add();
         ep.createFile();
+
+        System.out.print("\033[H\033[2J");
+        obj1.menu();
         break;
         }
         case 2:
@@ -185,14 +210,26 @@ class EmployManagementSystem
           {
             epv.viewFile(s);}
             catch(Exception e){System.out.println(e);}
+
+
+            System.out.print("\nPress Enter to Continue...");
+            sc.nextLine();
+            System.out.print("\033[H\033[2J");
+            obj1.menu();
             break;
           }
+
         case 3:
         {
           System.out.print("\nPlease Enter Employee's ID :");
           String s=sc.nextLine();
           Employee_Remove epr =new Employee_Remove();
           epr.removeFile(s);
+
+          System.out.print("\nPress Enter to Continue...");
+          sc.nextLine();
+          System.out.print("\033[H\033[2J");
+          obj1.menu();
           break;
         }
         case 4:
@@ -210,13 +247,19 @@ class EmployManagementSystem
             Employee_Update epu = new Employee_Update();
             System.out.print("Please Enter the detail you want to Update :");
     	      System.out.print("\nFor Example :\n");
-            System.out.println("If you want to Change the Name, then Enter Current Name and Press Enter. Then write the new Name then Press Enter. It will Update the Name");
+            System.out.println("If you want to Change the Name, then Enter Current Name and Press Enter. Then write the new Name then Press Enter. It will Update the Name.\n");
             String s=sc.nextLine();
-            System.out.print("\nPlease Enter the Updated Info :");
+            System.out.print("Please Enter the Updated Info :");
             String n=sc.nextLine();
             try
             {
               epu.updateFile(I,s,n);
+
+              System.out.print("\nPress Enter to Continue...");
+              sc.nextLine();
+              System.out.print("\033[H\033[2J");
+              obj1.menu();
+              break;
             }
             catch(IOException e)
             {
@@ -232,3 +275,5 @@ class EmployManagementSystem
     }
   }
 }
+
+/*************************** CODED BY ABHINAV DUBEY ************************/
