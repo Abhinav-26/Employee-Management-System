@@ -1,7 +1,9 @@
-/******************* Importing Essential Libraries ***********************/
+/******************** Importing Essential Libraries ************************/
 
 import java.util.*;
 import java.io.*;
+
+/************************* Taking Employee Details ************************/
 
 class EmployDetail
 {
@@ -31,6 +33,9 @@ class EmployDetail
         employ_salary=sc.nextLine();
     }
 }
+
+/************************ To add details of Employee *********************/
+
 class Employee_Add
 {
     public void createFile()
@@ -56,16 +61,7 @@ class Employee_Add
     }
 }
 
-class CodeExit
-{
-  public void out()
-  {
-    System.out.println("\n*****************************************");
-    System.out.println("$ cat Thank You For Using my Software :) ");
-    System.out.println("*****************************************\n");
-    System.exit(0);
-  }
-}
+/***************************** To Remove Employee *************************/
 
 class Employee_Remove
 {
@@ -87,6 +83,8 @@ class Employee_Remove
      }
 }
 
+/************************ To Update details of Employee ********************/
+
 class Employee_Update
 {
   public void updateFile(String s,String o,String n) throws IOException
@@ -106,6 +104,8 @@ class Employee_Update
   }
 }
 
+/************************ To Show details of Employee *********************/
+
 class Employee_Show
 {
   public void viewFile(String s) throws Exception
@@ -118,6 +118,20 @@ class Employee_Show
        System.out.println(sc.nextLine());
      }
    }
+}
+
+/************************ To Exit from the EMS Portal *********************/
+
+class CodeExit
+{
+  public void out()
+  {
+    System.out.println("\n*****************************************");
+    System.out.println("$ cat Thank You For Using my Software :) ");
+    System.out.println("******************************************");
+    System.out.println("\t\t/~ <0d3d by Abhinav Dubey\n");
+    System.exit(0);
+  }
 }
 
 /***************************** Main Class *******************************/
@@ -158,13 +172,14 @@ class EmployManagementSystem
       {
         case 1:
         {
+        /** Creating class's object and calling Function using that object **/
         Employee_Add ep =new Employee_Add();
         ep.createFile();
         break;
         }
         case 2:
         {
-          System.out.println("Enter Employee ID :");
+          System.out.print("\nPlease Enter Employee's ID :");
           String s=sc.nextLine();
           try
           {
@@ -174,7 +189,7 @@ class EmployManagementSystem
           }
         case 3:
         {
-          System.out.println("Enter Employee ID :");
+          System.out.print("\nPlease Enter Employee's ID :");
           String s=sc.nextLine();
           Employee_Remove epr =new Employee_Remove();
           epr.removeFile(s);
@@ -182,7 +197,7 @@ class EmployManagementSystem
         }
         case 4:
         {
-            System.out.println("Enter Employee ID :");
+            System.out.print("\nPlease Enter Employee's ID :");
             String I=sc.nextLine();
             try
             {
@@ -193,11 +208,11 @@ class EmployManagementSystem
               System.out.println(e);
             }
             Employee_Update epu = new Employee_Update();
-            System.out.println("enter the detail you want to change same as above:");
-    	      System.out.println("\n For Example:\n");
-            System.out.println("If you want to update an Employee name hritik to jagmeet then type hritik and press enter \n then type jagmeet and press enter. The name hritik will update to jagmeet.");
+            System.out.print("Please Enter the detail you want to Update :");
+    	      System.out.print("\nFor Example :\n");
+            System.out.println("If you want to Change the Name, then Enter Current Name and Press Enter. Then write the new Name then Press Enter. It will Update the Name");
             String s=sc.nextLine();
-            System.out.println("enter new Detail:");
+            System.out.print("\nPlease Enter the Updated Info :");
             String n=sc.nextLine();
             try
             {
