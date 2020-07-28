@@ -7,6 +7,6 @@ The Program is completely based on OOPs concept.
 <img src="Images/Java.png">
 
 # How to run ?
-For Compliation : javac EmployManagementSystem.java
+For Compliation : <code>javac EmployManagementSystem.java</code>
 
-To Run Program  : java EmployManagementSystem
+To Run Program  : <code>java EmployManagementSystem</code>
