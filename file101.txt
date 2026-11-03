@@ -1,0 +1,8 @@
+
+Employee ID:101
+Employee Name     :Dattatray Choudaj
+Father's Name     :Lagmanna
+Employee Contact  :3456790
+Email Information :dc@gmail.com
+Employee position :Manager
+Employee Salary   :50000
